@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Modules\SettingManagement\App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,7 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (\Schema::hasTable('settings')) {
+        // نتأكد إننا ما نشغل الكود أثناء أوامر Artisan
+        if (!app()->runningInConsole() && Schema::hasTable('settings')) {
             // تحميل القيمة من قاعدة البيانات إذا كان الجدول موجودًا
             $contactEmail = Setting::first()->email ?? 'info@example.com';
             config(['constant.contactEmail' => $contactEmail]);
