@@ -18,7 +18,7 @@ class SliderResource extends JsonResource
             'background' => $this->background_path,
             'title' => $this->title_translated,
             'text' => $this->text_translated,
-            'btnTitle' => $this->btn_titleTranslated,
+            'btnTitle' => $this->btn_title_translated,
             'btnUrl' => $this->btn_url,
             'btnActive' => $this->btn_active,
             'details' => $this->when($this->type === 'program', SliderDetailResource::collection($this->details)),

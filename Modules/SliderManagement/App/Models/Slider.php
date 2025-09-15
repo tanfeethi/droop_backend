@@ -89,28 +89,31 @@ class Slider extends Model
     }
 
     public function getTitleAttribute(){  
-       return json_decode($this->attributes['title'],true);
+       return json_decode($this->attributes['title'] ?? '{}', true);
     }
 
     public function getTextAttribute(){
-        return json_decode($this->attributes['text'],true);
+        return json_decode($this->attributes['text'] ?? '{}', true);
     }
 
     public function getBtnTitleAttribute(){
-        return json_decode($this->attributes['btn_title'],true);
+        return json_decode($this->attributes['btn_title'] ?? '{}', true);
     }
 
       /**get columns translated regarding to language sent in header for frontend developers */
       public function getTitleTranslatedAttribute(){  
-        return json_decode($this->attributes['title'],true)[app()->getLocale()];
+        $title = json_decode($this->attributes['title'] ?? '{}', true);
+        return $title[app()->getLocale()] ?? $title['en'] ?? '';
      }
  
      public function getTextTranslatedAttribute(){
-         return json_decode($this->attributes['text'],true)[app()->getLocale()];
+         $text = json_decode($this->attributes['text'] ?? '{}', true);
+         return $text[app()->getLocale()] ?? $text['en'] ?? '';
      }
 
      public function getBtnTitleTranslatedAttribute(){
-        return json_decode($this->attributes['btn_title'],true)[app()->getLocale()];
+        $btnTitle = json_decode($this->attributes['btn_title'] ?? '{}', true);
+        return $btnTitle[app()->getLocale()] ?? $btnTitle['en'] ?? '';
     }
      /**get columns translated regarding to language sent in header for frontend developers */
     
