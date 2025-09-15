@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/testimonialmanagement",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\TestimonialManagement\\": "",
+            "Modules\\TestimonialManagement\\App\\": "app/",
+            "Modules\\TestimonialManagement\\Database\\Factories\\": "database/factories/",
+            "Modules\\TestimonialManagement\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\TestimonialManagement\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "AreaManagement",
+    "alias": "areamanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AreaManagement\\App\\Providers\\AreaManagementServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TwitterIntefrationManagement",
+    "alias": "twitterintefrationmanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\TwitterIntefrationManagement\\App\\Providers\\TwitterIntefrationManagementServiceProvider"
+    ],
+    "files": []
+}

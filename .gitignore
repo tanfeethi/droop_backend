@@ -1,0 +1,64 @@
+# Composer dependencies
+/vendor/
+
+# Node dependencies
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+
+# Laravel 4
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5+ & Lumen
+/public/storage
+/public/hot
+
+# Laravel 5+ & Lumen (مع public path مختلف)
+public_html/storage
+public_html/hot
+
+# ملفات البيئة والمفاتيح السرية
+/.env
+/.env.backup
+/.env.production
+/storage/*.key
+auth.json
+
+# Homestead & Vagrant
+Homestead.yaml
+Homestead.json
+/.vagrant
+
+# PHPUnit
+.phpunit.result.cache
+.phpunit.cache
+
+# Build artifacts
+/public/build
+/storage/pail
+
+# Laravel Telescope (لو مضاف للمشروع)
+telescope.json
+config/telescope.php
+app/Providers/TelescopeServiceProvider.php
+database/migrations/*telescope_entries_table.php
+
+# IDE & Editor configs
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# اختياري: ملفات ضغط أو نسخ احتياطية
+*.zip
+*.rar
+*.tar.gz
+*.7z
