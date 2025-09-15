@@ -11,6 +11,8 @@ class ClientManagementDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            InsertClientsSeeder::class
+        ]);
     }
 }

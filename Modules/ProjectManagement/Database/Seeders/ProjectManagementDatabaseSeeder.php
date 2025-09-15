@@ -11,6 +11,8 @@ class ProjectManagementDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            InsertProjectsSeeder::class
+        ]);
     }
 }
