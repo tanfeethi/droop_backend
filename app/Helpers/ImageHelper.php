@@ -22,8 +22,8 @@ class ImageHelper
         // Remove 'storage/' if it exists in the path
         $path = ltrim($path, 'storage/');
         
-        // Generate dynamic URL using current domain
-        return asset('storage/' . $path);
+        // Generate full URL using current domain
+        return url('storage/' . $path);
     }
 
     /**

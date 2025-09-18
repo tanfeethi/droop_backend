@@ -7,22 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\AdminManagement\Database\factories\AdminFactory;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Traits\HasImageUrl;
 
 class Admin extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    use HasFactory, HasImageUrl;
 
 
-    public function getImagePathAttribute()
-    {
-        if (filter_var($this->attributes['image'], FILTER_VALIDATE_URL)) {
-            // If the image is a valid URL, return it directly
-            return $this->attributes['image'];
-        } else {
-            // If the image is not a URL, assume it's a file path and return it with the asset helper
-            return url('storage/' . $this->attributes['image']);
-        }
-    }
 
     /**
      * The attributes that are mass assignable.

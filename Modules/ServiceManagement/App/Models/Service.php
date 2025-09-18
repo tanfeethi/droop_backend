@@ -5,10 +5,11 @@ namespace Modules\ServiceManagement\App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\ServiceManagement\Database\factories\ServiceFactory;
+use App\Traits\HasImageUrl;
 
 class Service extends Model
 {
-    use HasFactory;
+    use HasFactory, HasImageUrl;
 
     /**
      * The attributes that are mass assignable.
@@ -19,16 +20,6 @@ class Service extends Model
      * The attributes that are mass assignable.
      */
 
-    public function getIconPathAttribute()
-    {
-        if (filter_var($this->attributes['icon'], FILTER_VALIDATE_URL)) {
-            // If the image is a valid URL, return it directly
-            return $this->attributes['icon'];
-        } else {
-            // If the image is not a URL, assume it's a file path and return it with the asset helper
-            return url('storage/' . $this->attributes['icon']);
-        }
-    }
 
     public function setTitleAttribute($title){
         $this->attributes['title'] = json_encode($title);

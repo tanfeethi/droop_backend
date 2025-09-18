@@ -7,10 +7,11 @@ use Modules\TrainerManagement\App\Models\Trainer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\ProjectManagement\Database\factories\ProjectFactory;
+use App\Traits\HasImageUrl;
 
 class Project extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes, HasImageUrl;
 
     /**
      * The attributes that are mass assignable.
@@ -24,16 +25,6 @@ class Project extends Model
      /**
      * The attributes that are mass assignable.
      */
-    public function getThumbnailPathAttribute()
-    {
-        if (filter_var($this->attributes['thumbnail'], FILTER_VALIDATE_URL)) {
-            // If the image is a valid URL, return it directly
-            return $this->attributes['thumbnail'];
-        } else {
-            // If the image is not a URL, assume it's a file path and return it with the asset helper
-            return url('storage/' . $this->attributes['thumbnail']);
-        }
-    }
     
 
     public function setTitleAttribute($title){  
