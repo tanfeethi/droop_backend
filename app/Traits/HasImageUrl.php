@@ -60,4 +60,9 @@ trait HasImageUrl
     {
         return $this->getImageUrl('thumbnail');
     }
+
+    public function getIconPathAttribute()
+    {
+        return $this->getImageUrl('icon');
+    }
 }

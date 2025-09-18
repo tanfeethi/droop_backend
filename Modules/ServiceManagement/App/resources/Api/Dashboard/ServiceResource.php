@@ -13,7 +13,7 @@ class ServiceResource extends JsonResource
     {
         return[
             'id' => $this->id,
-            'icon' => $this->icon,
+            'icon' => $this->icon_path,
             'title' => $this->title,
             'text' => $this->text,
        ];
