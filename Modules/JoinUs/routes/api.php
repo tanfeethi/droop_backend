@@ -15,6 +15,11 @@ use Modules\JoinUs\App\Http\Controllers\Api\Dashboard\JoinUsController;
     |
 */
 
+// Route::group(['prefix' => 'frontend'], function () {
+//     Route::get('join-us', [Modules\JoinUs\App\Http\Controllers\Api\Frontend\JoinUsController::class, 'index']);
+//     Route::post('join-us', [Modules\JoinUs\App\Http\Controllers\Api\Frontend\JoinUsController::class, 'store']);
+// });
+
 Route::group(['prefix' => 'joinUs'], function () {
     Route::post('sendMail', [JoinUsController::class, 'contactUs']);
 });

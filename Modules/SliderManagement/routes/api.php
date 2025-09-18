@@ -19,25 +19,22 @@ use Modules\SliderManagement\App\Http\Controllers\Api\Frontend\ProgramDetailCont
 */
 Route::group(['prefix' => 'frontend'], function () {
     // General Sliders Routes
-    Route::get('sliders', [SlidersController::class, 'index']);
-    Route::get('sliders/{id}', [SlidersController::class, 'show']);
+    Route::resource('sliders', SlidersController::class)->only(['index', 'show']);
     
     // Hero Sliders - Separate API
     Route::prefix('hero')->group(function() {
-        Route::get('/', [HeroController::class, 'index']);        // List all hero sliders
-        Route::get('/{id}', [HeroController::class, 'show']);      // Show hero slider
+        Route::resource('/', HeroController::class)->only(['index', 'show']);
     });
     
     // Program Sliders - Separate API
     Route::prefix('program')->group(function() {
-        Route::get('/', [ProgramController::class, 'index']);     // List all program sliders
-        Route::get('/{id}', [ProgramController::class, 'show']);  // Show program slider
-        Route::get('/{id}/details', [ProgramDetailController::class, 'getSliderDetails']); // Get details for specific program slider
-        
-        // Program Details API
-        Route::get('details', [ProgramDetailController::class, 'index']);                    // List all program details
+        // Program Details API - Must be before dynamic routes
+        Route::resource('details', ProgramDetailController::class)->only(['index', 'show']);
         Route::get('details/slider/{sliderId}', [ProgramDetailController::class, 'getSliderDetails']); // Get details for specific slider
-        Route::get('details/{id}', [ProgramDetailController::class, 'show']);                  // Show program detail
+        
+        // Program Sliders API
+        Route::resource('/', ProgramController::class)->only(['index', 'show']);
+        Route::get('/{id}/details', [ProgramDetailController::class, 'getSliderDetails']); // Get details for specific program slider
     });
 });
 

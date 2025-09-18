@@ -15,6 +15,10 @@ use Modules\Newsletters\App\Http\Controllers\Api\Frontend\NewslettersController;
     |
 */
 
+Route::group(['prefix' => 'frontend'], function () {
+    Route::resource('newsletters', NewslettersController::class)->only(['index', 'store']);
+});
+
 Route::group(['prefix' => 'frontend/newsletter'], function () {
     Route::post('subscrip', [NewslettersController::class, 'store']);
 });

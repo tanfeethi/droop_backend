@@ -16,7 +16,7 @@ class SliderDetailResource extends JsonResource
             'slider_id' => $this->slider_id,
             'title' => $this->title ?? [],
             'description' => $this->description ?? [],
-            'image' => $this->image_path ?? '',
+            'image' => $this->image_path ?? $this->image ?? '',
             'order' => $this->order ?? 0,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

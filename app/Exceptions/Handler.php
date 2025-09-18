@@ -2,20 +2,21 @@
 
 namespace App\Exceptions;
 
-use App\Traits\ApiResponseTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use ApiResponseTrait;
     /**
      * A list of exception types with their corresponding custom log levels.
-     *
-     * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
      */
     protected $levels = [
         //
@@ -23,8 +24,6 @@ class Handler extends ExceptionHandler
 
     /**
      * A list of the exception types that are not reported.
-     *
-     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         //
@@ -32,8 +31,6 @@ class Handler extends ExceptionHandler
 
     /**
      * A list of the inputs that are never flashed to the session on validation exceptions.
-     *
-     * @var array<int, string>
      */
     protected $dontFlash = [
         'current_password',
@@ -51,16 +48,95 @@ class Handler extends ExceptionHandler
         });
     }
 
-    /**handle No query results for model  */
-    public function render($request, Throwable $exception)
+    /**
+     * Render an exception into an HTTP response.
+     */
+    public function render($request, Throwable $e): JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
     {
-        if ($exception instanceof ModelNotFoundException && $request->expectsJson()) {
-            return $this->sendResponse([], 'fail' ,'Not Found !', 404);
+        // Handle API requests
+        if ($request->is('api/*')) {
+            return $this->handleApiException($request, $e);
         }
-        if ($exception instanceof ValidationException) {
-            $firstError = collect($exception->errors())->flatten()->first();
-            return $this->sendResponse([], 'fail' , $firstError , 422);
+
+        return parent::render($request, $e);
+    }
+
+    /**
+     * Handle API exceptions with proper error messages
+     */
+    private function handleApiException(Request $request, Throwable $e): JsonResponse
+    {
+        if ($e instanceof ValidationException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'Validation failed',
+                'errors' => $e->errors(),
+                'code' => 422
+            ], 422);
         }
-        return parent::render($request, $exception);
+
+        if ($e instanceof ModelNotFoundException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'Resource not found',
+                'code' => 404
+            ], 404);
+        }
+
+        if ($e instanceof AuthenticationException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'You are not authenticated',
+                'code' => 401
+            ], 401);
+        }
+
+        if ($e instanceof NotFoundHttpException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'Endpoint not found',
+                'code' => 404
+            ], 404);
+        }
+
+        if ($e instanceof MethodNotAllowedHttpException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'Method not allowed',
+                'code' => 405
+            ], 405);
+        }
+
+        if ($e instanceof HttpException) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => $e->getMessage() ?: 'HTTP Error',
+                'code' => $e->getStatusCode()
+            ], $e->getStatusCode());
+        }
+
+        // Handle null property access
+        if (strpos($e->getMessage(), 'Attempt to read property') !== false) {
+            return response()->json([
+                'data' => [],
+                'status' => 'fail',
+                'error' => 'Data not available',
+                'code' => 404
+            ], 404);
+        }
+
+        // Handle general exceptions
+        return response()->json([
+            'data' => [],
+            'status' => 'fail',
+            'error' => config('app.debug') ? $e->getMessage() : 'Internal server error',
+            'code' => 500
+        ], 500);
     }
 }

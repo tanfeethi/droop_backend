@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
     | is assigned the "api" middleware group. Enjoy building your API!
     |
 */
+// Route::group(['prefix' => 'frontend'], function () {
+//     Route::get('contact-us', [Modules\ContactUs\App\Http\Controllers\Api\Frontend\ContactUsController::class, 'index']);
+//     Route::post('contact-us', [Modules\ContactUs\App\Http\Controllers\Api\Frontend\ContactUsController::class, 'store']);
+// });
+
 Route::group(['prefix' => 'contactUs'], function () {
     Route::post('/sendMail', [Modules\ContactUs\App\Http\Controllers\Api\Dashboard\CountactUsController::class, 'contactUs']);
 });

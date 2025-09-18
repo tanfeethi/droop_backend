@@ -17,7 +17,9 @@ use Modules\SettingManagement\App\Http\Controllers\Api\Frontend\SettingsControll
 */
 
 Route::group(['prefix' => 'frontend'],function(){
+    Route::get('settings', [SettingsController::class, 'index']);
     Route::get('settings/list', [SettingsController::class, 'index']);
+    Route::get('navbar', [NavbarController::class, 'index']);
     Route::get('navbar/list', [NavbarController::class, 'index']);
 });
 

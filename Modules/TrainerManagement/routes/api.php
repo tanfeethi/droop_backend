@@ -15,7 +15,13 @@ use Modules\TrainerManagement\App\Http\Controllers\Api\Frontend\TrainersControll
     |
 */
 Route::group(['prefix' => 'frontend'], function () {
-    Route::resource('trainers', TrainersController::class);
+    Route::resource('trainers', TrainersController::class)->except(['create', 'edit'])->names([
+        'index' => 'frontend.trainers.index',
+        'store' => 'frontend.trainers.store',
+        'show' => 'frontend.trainers.show',
+        'update' => 'frontend.trainers.update',
+        'destroy' => 'frontend.trainers.destroy'
+    ]);
 });
 
 

@@ -25,7 +25,7 @@ Route::get('getLatestTweets', function(TwitterService $twitterService){
 });
 
 Route::group(['prefix' => 'frontend'], function () {
-    Route::get('twitter/getTweets', [TwitterController::class, 'getLatestTweets']);
+    Route::get('twitter', [TwitterController::class, 'getLatestTweets']);
 });
 
 

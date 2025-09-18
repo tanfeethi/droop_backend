@@ -49,6 +49,7 @@ database/migrations/*telescope_entries_table.php
 /.vscode
 *.sublime-project
 *.sublime-workspace
+*.md
 
 # System files
 .DS_Store

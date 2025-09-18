@@ -18,5 +18,11 @@ use Modules\AreaManagement\App\Http\Controllers\Api\Dashboard\AreasController;
 
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth:admin'],function(){
-    Route::resource('areas', AreasController::class);
+    Route::resource('areas', AreasController::class)->except(['create', 'edit'])->names([
+    'index' => 'dashboard.areas.index',
+    'store' => 'dashboard.areas.store',
+    'show' => 'dashboard.areas.show',
+    'update' => 'dashboard.areas.update',
+    'destroy' => 'dashboard.areas.destroy'
+]);
 });

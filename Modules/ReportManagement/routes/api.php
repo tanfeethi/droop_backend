@@ -16,7 +16,13 @@ use Modules\ReportManagement\App\Http\Controllers\Api\Frontend\ReportsController
 */
 
 Route::group(['prefix' => 'frontend'], function () {
-    Route::resource('reports', ReportsController::class);
+    Route::resource('reports', ReportsController::class)->except(['create', 'edit'])->names([
+        'index' => 'frontend.reports.index',
+        'store' => 'frontend.reports.store',
+        'show' => 'frontend.reports.show',
+        'update' => 'frontend.reports.update',
+        'destroy' => 'frontend.reports.destroy'
+    ]);
 });
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {

@@ -21,5 +21,11 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function 
 
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth:admin'], function() {
-    Route::resource('testimonials', TestimonialsController::class);
+    Route::resource('testimonials', TestimonialsController::class)->except(['create', 'edit'])->names([
+    'index' => 'dashboard.testimonials.index',
+    'store' => 'dashboard.testimonials.store',
+    'show' => 'dashboard.testimonials.show',
+    'update' => 'dashboard.testimonials.update',
+    'destroy' => 'dashboard.testimonials.destroy'
+]);
 });

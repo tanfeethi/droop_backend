@@ -17,5 +17,11 @@ use Modules\ReportManagement\App\Http\Controllers\Api\Dashboard\ReportsControlle
 */
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth:admin'], function () {
-    Route::resource('reports', ReportsController::class);
+    Route::resource('reports', ReportsController::class)->except(['create', 'edit'])->names([
+        'index' => 'dashboard.reports.index',
+        'store' => 'dashboard.reports.store',
+        'show' => 'dashboard.reports.show',
+        'update' => 'dashboard.reports.update',
+        'destroy' => 'dashboard.reports.destroy'
+    ]);
 });

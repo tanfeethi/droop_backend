@@ -17,9 +17,12 @@ use Modules\TrainerManagement\App\Http\Controllers\Api\Dashboard\TrainersControl
 */
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth:admin'], function () {
-    Route::resource('trainers', TrainersController::class);
-//    Route::get('', [TrainersController::class, 'index']);
-//    Route::get('staticPages/{name}', [TrainersController::class, 'show']);
-//    Route::post('update/staticPages', [TrainersController::class, 'update']);
+    Route::resource('trainers', TrainersController::class)->except(['create', 'edit'])->names([
+        'index' => 'dashboard.trainers.index',
+        'store' => 'dashboard.trainers.store',
+        'show' => 'dashboard.trainers.show',
+        'update' => 'dashboard.trainers.update',
+        'destroy' => 'dashboard.trainers.destroy'
+    ]);
 });
 

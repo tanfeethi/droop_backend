@@ -16,7 +16,9 @@ use Modules\StaticPages\App\Http\Controllers\Api\Frontend\StaticPagesController;
 */
 
 Route::group(['prefix' => 'frontend'], function () {
+    Route::get('static-pages', [StaticPagesController::class, 'index']);
     Route::get('staticPages', [StaticPagesController::class, 'index']);
+    Route::get('static-pages/{name}', [StaticPagesController::class, 'show']);
     Route::get('staticPages/{name}', [StaticPagesController::class, 'show']);
 });
 

@@ -185,6 +185,8 @@ return [
         /*
          * Package Service Providers...
          */
+         
+         Nwidart\Modules\LaravelModulesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -195,6 +197,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
+        App\Providers\ApiResponseServiceProvider::class,
 
     ],
 
