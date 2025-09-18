@@ -70,12 +70,13 @@
     </div>
     <div class="content">
         <p>Hello,</p>
-        <p>We have received new message from: <span class="highlight">{{ ' '.$details['name'] }}</span></p>
+        <p>We have received new message from: <span class="highlight">{{ $details['name'] }}</span></p>
         <blockquote>
+            <p>Name: {{ $details['name'] }}</p>
             <p>Email: {{ $details['email'] }}</p>
             <p>Phone: {{ $details['phone'] }}</p>
             <p>Subject: {{ $details['subject'] }}</p>
-            <p>Message: {{ $details['message'] }}</p>
+            <p>Message: {{ $details['massage'] }}</p>
         </blockquote>
         {{--        <p>Thank you for reaching out to us. We will review your message and get back to you shortly.</p>--}}
         {{--        <a href="{{ '$action_url' }}" class="button">View Your Request</a>--}}

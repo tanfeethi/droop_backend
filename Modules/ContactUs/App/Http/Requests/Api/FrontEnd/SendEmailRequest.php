@@ -12,11 +12,11 @@ class SendEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'phone' => ['sometimes'],
-            'subject' => ['required', 'string'],
-            'message' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'subject' => ['nullable', 'string'],
+            'massage' => ['required', 'string'],
         ];
     }
 
