@@ -31,7 +31,7 @@ class ServicesController extends Controller
     public function store(ServiceRequestValidation $request)
     {
         $data = $request->validated();
-        $data['icon'] = FileHelper::upload_file('uploads',  $data['icon']);
+        $data['icon'] = FileHelper::upload_file('uploads/services',  $data['icon']);
         Service::create($data);
         return $this->sendResponse([]);
     }
@@ -41,7 +41,7 @@ class ServicesController extends Controller
     {
         $data = $request->validated();
         if (isset($data['icon'])) {
-            $data['icon'] = FileHelper::update_file('uploads', $data['icon'], $service->icon);
+            $data['icon'] = FileHelper::update_file('uploads/services', $data['icon'], $service->icon);
         };
         $service->update($data);
         return $this->sendResponse([]);

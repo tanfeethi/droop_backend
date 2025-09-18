@@ -13,7 +13,7 @@ class FileHelper
     public static function upload_file($folder_path, $file)
     {
         if (!$file) return null;
-        $file_path = $file->store($folder_path);
+        $file_path = $file->store($folder_path, 'public');
         return $file_path;
     }
     /**
@@ -27,15 +27,15 @@ class FileHelper
         if (!$file) return null;
 
         if (!empty($old_file)) {
-            Storage::delete($old_file);
+            Storage::disk('public')->delete($old_file);
         }
-        return $file->store($folder_path);
+        return $file->store($folder_path, 'public');
     }
 
     public static function delete_files(array $filesToDelete){
         foreach ($filesToDelete as $file) {
             if($file == null) return;
-                Storage::delete($file);
+                Storage::disk('public')->delete($file);
             return true;
         }
         return true;
@@ -44,7 +44,7 @@ class FileHelper
     public static function delete_file($file)
     {
         if($file == null) return;
-        Storage::delete($file);
+        Storage::disk('public')->delete($file);
         return true;
     }
 
