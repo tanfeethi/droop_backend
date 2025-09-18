@@ -72,7 +72,7 @@ class Slider extends Model
             return $this->attributes['background'];
         } else {
             // If the image is not a URL, assume it's a file path and return it with the asset helper
-            return asset('storage/' . $this->attributes['background']);
+            return url('storage/' . $this->attributes['background']);
         }
     }
 
