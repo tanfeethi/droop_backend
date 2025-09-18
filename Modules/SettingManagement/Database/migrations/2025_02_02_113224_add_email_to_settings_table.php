@@ -18,7 +18,7 @@ return new class extends Migration {
 
         DB::table('settings')
             ->where('id', 1)
-            ->update(['email' => "info@example.com"]);
+            ->update(['email' => "test@dmt-edu.com"]);
         Artisan::call('config:cache');
     }
 

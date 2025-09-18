@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         // نتأكد إننا ما نشغل الكود أثناء أوامر Artisan
         if (!app()->runningInConsole() && Schema::hasTable('settings')) {
             // تحميل القيمة من قاعدة البيانات إذا كان الجدول موجودًا
-            $contactEmail = Setting::first()->email ?? 'info@example.com';
+            $contactEmail = Setting::first()->email ?? 'test@dmt-edu.com';
             config(['constant.contactEmail' => $contactEmail]);
         }
     }
