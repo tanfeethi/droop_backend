@@ -16,7 +16,7 @@ class SendEmailRequest extends FormRequest
             'email' => ['required', 'email'],
             'phone' => ['sometimes'],
             'subject' => ['required', 'string'],
-            'massage' => ['required', 'string'],
+            'message' => ['required', 'string'],
         ];
     }
 

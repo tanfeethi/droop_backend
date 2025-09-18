@@ -31,7 +31,7 @@ class CountactUsController extends Controller
             $data = [
                 'message' => 'Error in sending email!'
             ];
-            return $this->sendResponse($data,'Error',$e->getMessage(),400);
+            return $this->sendResponse($data, $e->getMessage(), 400);
         }
     }
 

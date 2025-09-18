@@ -75,7 +75,7 @@
             <p>Email: {{ $details['email'] }}</p>
             <p>Phone: {{ $details['phone'] }}</p>
             <p>Subject: {{ $details['subject'] }}</p>
-            <p>Massage: {{ $details['massage'] }}</p>
+            <p>Message: {{ $details['message'] }}</p>
         </blockquote>
         {{--        <p>Thank you for reaching out to us. We will review your message and get back to you shortly.</p>--}}
         {{--        <a href="{{ '$action_url' }}" class="button">View Your Request</a>--}}
