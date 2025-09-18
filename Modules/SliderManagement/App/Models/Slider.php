@@ -5,10 +5,11 @@ namespace Modules\SliderManagement\App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\SliderManagement\Database\factories\SliderFactory;
+use App\Traits\HasImageUrl;
 
 class Slider extends Model
 {
-    use HasFactory;
+    use HasFactory, HasImageUrl;
 
     protected $guarded = [];
 
@@ -65,16 +66,6 @@ class Slider extends Model
     /**
      * The attributes that are mass assignable.
      */
-    public function getBackgroundPathAttribute()
-    {
-        if (filter_var($this->attributes['background'], FILTER_VALIDATE_URL)) {
-            // If the image is a valid URL, return it directly
-            return $this->attributes['background'];
-        } else {
-            // If the image is not a URL, assume it's a file path and return it with the asset helper
-            return url('storage/' . $this->attributes['background']);
-        }
-    }
 
     public function setTitleAttribute($title){  
         $this->attributes['title'] = json_encode($title);
