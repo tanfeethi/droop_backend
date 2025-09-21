@@ -21,9 +21,17 @@ class SettingsController extends Controller
     public function update(SettingRequestValidation $request){
 
         $data = $request->validated();
-        Setting::updateOrCreate(['id' => 1],$data);
+        
+        // Log the data being saved for debugging
+        \Log::info('Settings update data:', $data);
+        
+        $setting = Setting::updateOrCreate(['id' => 1], $data);
+        
+        // Log the saved setting for debugging
+        \Log::info('Saved setting:', $setting->toArray());
+        
         Artisan::call('config:cache');
-        return $this->sendResponse([]);
+        return $this->sendResponse($setting);
     }
 
 }

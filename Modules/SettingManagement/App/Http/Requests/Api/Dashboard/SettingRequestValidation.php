@@ -22,10 +22,7 @@ class SettingRequestValidation extends FormRequest
              'address.ar' => ['required', 'string'],
 
              'phones' => ['required', 'array'],
-             'phones.phones' => ['nullable', 'array'],
-             'phones.mobiles' => ['nullable', 'array'],
-             'phones.phones.*' => ['nullable', 'string'],
-             'phones.mobiles.*' => ['nullable', 'string'],
+             'phones.*' => ['nullable', 'string'],
 
 
              'social_media' => ['required','array'],

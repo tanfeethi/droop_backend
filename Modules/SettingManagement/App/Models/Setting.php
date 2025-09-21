@@ -28,6 +28,10 @@ class Setting extends Model
     }
 
     public function setPhonesAttribute($phones){
+        // Ensure phones is always an array
+        if (is_string($phones)) {
+            $phones = json_decode($phones, true) ?: [];
+        }
         $this->attributes['phones'] = json_encode($phones);
     }
 
