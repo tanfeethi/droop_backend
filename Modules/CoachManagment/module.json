@@ -1,0 +1,11 @@
+{
+    "name": "CoachManagment",
+    "alias": "coachmanagment",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoachManagment\\App\\Providers\\CoachManagmentServiceProvider"
+    ],
+    "files": []
+}
