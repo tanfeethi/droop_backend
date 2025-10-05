@@ -79,9 +79,9 @@ class CoachesController extends Controller
         try {
             Mail::to(config('constant.contactEmail'))
                 ->send(new CoachJoinEmail($details));
-            return $this->sendResponse([[ 'message' => 'Email sent successfully!' ]]);
+            return $this->sendResponse([[ 'message' => 'Email sent successfully!' ]], 'Email sent successfully!', 200);
         } catch (\Exception $e) {
-            return $this->sendResponse([], 'Error', $e->getMessage(), 400);
+            return $this->sendError($e->getMessage(), 400);
         }
     }
 }

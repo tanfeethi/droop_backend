@@ -27,6 +27,6 @@ class CoachJoinEmail extends Mailable
     public function build(): self
     {
         return $this->subject('New Coach Join Request')
-            ->view('modules.coachmanagment.emails.join');
+            ->view('coachmanagment::emails.join');
     }
 }
